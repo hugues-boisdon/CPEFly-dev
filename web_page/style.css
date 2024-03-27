@@ -1,0 +1,110 @@
+/* Default styling */
+*
+{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: whitesmoke;
+}
+
+/* Styling of the default page */
+.page
+{
+    background-color: #4B4B4B;
+    margin: 0%;
+}
+
+/* Styling of the page footer */
+footer
+{
+    background-color: #333;
+    font-size: 14px;
+
+    display: flex;
+    justify-content: center;
+    
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+
+/* Styling of the Navigation Bar */
+.barNavigation 
+{
+    background-color: #333;
+
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    margin: 20%;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    max-width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+    /* Styling of the list of links */
+    .barNavigation li
+    {
+        display: inline;
+        list-style-type: none;
+        margin : 40px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    /* Further styling of the first element 'CPEFly' */
+    .barNavigation li:nth-child(1) a 
+    {
+        text-decoration: none; 
+        
+        font-size: 20px;
+    }
+
+    /* Further styling of the second and last element 'Info' */
+    .barNavigation li:nth-child(2) a 
+    {
+        text-decoration: none; 
+        font-size: 20px;
+    }
+
+/* Styling of the interface */
+.interface
+{
+    background-color: #333;
+
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 30px;
+    margin-right: 30px;
+
+    border-radius: 8px;
+    width:auto;
+    height: 100%;
+    max-width: 100%;
+
+    padding: 10px;
+
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .interface div
+    {
+        border : whitesmoke;
+        border-style: dotted;
+        border-width: 3px;
+
+        margin:2%;
+        width: 30%;
+        height: 420px;
+    }
+
+    .interface div a
+    {
+        margin: 35%;
+    }
