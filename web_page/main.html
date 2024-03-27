@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CPEFly Web Interface</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="./script.js" defer></script>
 </head>
 <body class="page">
     <header >
@@ -16,19 +15,34 @@
     </header>
     
     <main class="interface">
-        <div>
-            <a>Données Nav</a>
+        <div class="sub">
+            <a id="label">Données Nav</a>
         </div>
-        <div>
-            <a>Flux Vidéo</a>
+        <div class="sub">
+            <a id="label">Flux Vidéo</a>
         </div>
-        <div>
-            <a>Contrôleur</a>
+        <div class="sub" id="controller">
+            <div class="controller-row">
+                <a id="label">Slider Vitesse</a>
+            </div>
+            <div class="controller-row">
+                <a id="label">Translation</a>
+                <a id="dX-translation">dX: 0.0000</a>
+                <a id="dY-translation">dY: 0.0000</a>
+                <div class="joystick-translation"></div>
+            </div>
+            <div class="controller-row">
+                <a id="label">Height</a>
+                <a id="dX-height">dX: 0.0000</a>
+                <a id="dY-height">dY: 0.0000</a>
+                <div class="joystick-height"></div>
+            </div>
         </div>
     </main>
     
     <footer>
         <p>&copy; 2024 CPEFly. GNU GENERAL PUBLIC LICENSE.</p>
     </footer>
+    <script src="./script.js" defer></script>
 </body>
 </html>
