@@ -11,10 +11,10 @@ def infoPage():
    if request.method == "GET":
       return render_template("info.html")
 
-@app.route('/process', methods=['POST']) 
-def process(): 
+@app.route('/command', methods=['POST']) 
+def receiveMoveCommand(): 
     data = request.get_json() 
-    print(f'received Data : {data}\n')
+    print(f'received Command: {data}\n')
     return jsonify(result=data)
 
 
