@@ -159,7 +159,6 @@ class VirtualJoystick {
 
 var commandValues = [0,0,0,0];
 var keyWerePressed     = false;
-var joystickWasUsed    = false;
 var stopSendingCommand = false;
 
 // We create our Joysticks
@@ -184,11 +183,6 @@ const height_dY_text = document.querySelector('#dY-height');
 const height_joystick = new VirtualJoystick(height_joystickContainer, {
     width: 100, height: 100, color: 'gray', handleColor: 'white', handleRadius: 20,
     onChange: function(delta) {
-        joystickWasUsed = true
-        if (delta.x == 0 && delta.y == 0)
-        {
-            joystickWasUsed = false
-        }
         commandValues[2] = delta.x;
         commandValues[3] = delta.y;
     }
@@ -203,6 +197,14 @@ document.querySelector('.page').addEventListener("keydown", (event) => {
     if (event.key == 'ArrowDown') {commandValues[1] = -1}
     if (event.key == 'ArrowRight'){commandValues[0] = 1}
     if (event.key == 'ArrowLeft') {commandValues[0] = -1}
+});
+document.querySelector('.page').addEventListener("keyup", (event) => {
+    keyWerePressed = true;
+    console.log(event.key)
+    if (event.key == 'ArrowUp')   {commandValues[1] = 0}
+    if (event.key == 'ArrowDown') {commandValues[1] = 0}
+    if (event.key == 'ArrowRight'){commandValues[0] = 0}
+    if (event.key == 'ArrowLeft') {commandValues[0] = 0}
 });
 
 
@@ -232,10 +234,6 @@ function updateMoveCommand()
     else if (keyWerePressed || !commandIsNull)
     {
         stopSendingCommand = false
-    }
-    else if (!keyWerePressed && !joystickWasUsed)
-    {
-        commandValues = [0,0,0,0]
     }
 
 
