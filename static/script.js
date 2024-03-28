@@ -154,7 +154,7 @@ class VirtualJoystick {
 
 
 
-// Our code :
+// We create our Joysticks
 const translation_joystickContainer = document.querySelector('.joystick-translation');
 const translation_dX_text = document.querySelector('#dX-translation');
 const translation_dY_text = document.querySelector('#dY-translation');
@@ -166,8 +166,11 @@ const translation_joystick = new VirtualJoystick(translation_joystickContainer, 
     handleColor: 'white',
     handleRadius: 20,
     onChange: function(delta) {
-        translation_dX_text.innerHTML = "dX: " + String(parseFloat(delta.x).toFixed(4))
-        translation_dY_text.innerHTML = "dY: " + String(parseFloat(delta.y).toFixed(4))
+        var dX = String(parseFloat(delta.x).toFixed(4));
+        var dY = String(parseFloat(delta.y).toFixed(4));
+        sendData(data = ['translation.dX:'+dX, 'translation.dY:'+dY])
+        translation_dX_text.innerHTML = "dX: " + dX
+        translation_dY_text.innerHTML = "dY: " + dY
     }
 });
 
@@ -182,7 +185,25 @@ const height_joystick = new VirtualJoystick(height_joystickContainer, {
     handleColor: 'white',
     handleRadius: 20,
     onChange: function(delta) {
-        height_dX_text.innerHTML = "dX: " + String(parseFloat(delta.x).toFixed(4))
-        height_dY_text.innerHTML = "dY: " + String(parseFloat(delta.y).toFixed(4))
+        var dX = String(parseFloat(delta.x).toFixed(4));
+        var dY = String(parseFloat(delta.y).toFixed(4));
+        sendData(data = ['height.dX:'+dX, 'height.dY:'+dY])
+        height_dX_text.innerHTML = "dX: " + dX
+        height_dY_text.innerHTML = "dY: " + dY
     }
 });
+
+
+
+function sendData(data) 
+{ 
+    let response = fetch("/process", {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+            'Content-Type': 'application/json'
+           },
+            body: JSON.stringify(data)
+        });
+        return response;
+} 
