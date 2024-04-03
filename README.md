@@ -1,5 +1,5 @@
 ## Dépendances Python
-- *Flask* (**pip install *flask***)
+- **Flask** (*pip install **flask***)
 
 ## Diagramme Architecture
 
