@@ -248,6 +248,7 @@ function updateMoveCommand()
 
 
 
+
 function sendCommand(command) 
 { 
     let response = fetch("/command", {
