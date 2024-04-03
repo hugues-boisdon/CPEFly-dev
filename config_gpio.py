@@ -12,6 +12,10 @@ if (sys.platform != targetPlatform):
 
 
 
+from RPi import GPIO
+
+
+
 def initialize_gpio():
     """
     Paramètres GPIO généraux.
