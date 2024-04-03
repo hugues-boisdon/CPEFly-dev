@@ -16,14 +16,8 @@ from RPi import GPIO
 
 
 
-def initialize_gpio():
-    """
-    Paramètres GPIO généraux.
-
-    GPIO.setmode()
-
-    """
-    pass
+def initialize_gpio(_mode):
+    GPIO.setmode(_mode)
 
 def setup_pin(pin, direction):
     """
