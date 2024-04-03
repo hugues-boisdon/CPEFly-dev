@@ -1,6 +1,6 @@
 ## Dépendances Python
 - **Flask** (*pip install **flask***)
-- **RPi.GPIO** (*pip install **RPi.GPIO***)
+- **RPi.GPIO** (*pip install **rpi-gpio --pre***)
 
 ## Diagramme Architecture
 
