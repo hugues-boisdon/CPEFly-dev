@@ -1,1 +1,1 @@
-(/info/diag_archi.png "Diagramme Architecture").
+![Diagramme Architecture](/info/diag_archi.png).
