@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, jsonify
+from flask import Flask, render_template, request, url_for, jsonify, Response
 
 app = Flask(__name__)
 
@@ -16,7 +16,6 @@ def receiveMoveCommand():
     data = request.get_json() 
     print(f'received Command: {data}\n')
     return jsonify(result=data)
-
 
 if __name__ == '__main__':
    app.run()
