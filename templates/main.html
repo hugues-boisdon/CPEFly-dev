@@ -2,48 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CPEFly Web Interface</title>
-    <link rel="stylesheet" href="../static/style.css">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <link rel="stylesheet" href="../static/bulma.css">
+    <link rel="stylesheet" href="../static/style_new.css">
 </head>
-<body class="page">
-    <header >
-        <ul class="barNavigation">
-            <li><a href="/">CPEFly</a></li>
-            <li><a href="/info">Info</a></li>
-        </ul>
+<body class="hero has-background-text-10">
+
+    <header class="navbar has-background-text-20" role="navigation" aria-label="main navigation">
+        <a class="navbar-item" href="/">CPEFly</a>
+        <a class="navbar-item" href="/info">Info</a>
     </header>
     
-    <main class="interface">
-        <div class="sub">
-            <a id="label">Données Nav</a>
+
+    <main class='columns is-vcentered '>
+
+        <div class='column is-narrow has-text-centered'>
+            <p>Height</p>
+            <p id="dX-height">dX: 0.0000</p>
+            <p id="dY-height">dY: 0.0000</p>
+            <div id="joystick-height"></div>
         </div>
         <div class="sub">
             <a id="label">Flux Vidéo</a>
-            <iframe src="http://192.168.143.236:5000/video_feed" width="640" height="480"></iframe>
+            <iframe src="http://<adresse_ip_raspberry>:5000/video_feed" width="640" height="480"></iframe>
         </div>
-        <div class="sub" id="controller">
-            <div class="controller-row">
-                <a id="label">Slider Vitesse</a>
-            </div>
-            <div class="controller-row">
-                <a id="label">Translation</a>
-                <a id="dX-translation">dX: 0.0000</a>
-                <a id="dY-translation">dY: 0.0000</a>
-                <div class="joystick-translation"></div>
-            </div>
-            <div class="controller-row">
-                <a id="label">Height</a>
-                <a id="dX-height">dX: 0.0000</a>
-                <a id="dY-height">dY: 0.0000</a>
-                <div class="joystick-height"></div>
-            </div>
-        </div>
+
+        <div class='column is-narrow has-text-centered'>
+            <p>Translation</p>
+            <p id="dX-translation">dX: 0.0000</p>
+            <p id="dY-translation">dY: 0.0000</p>
+        <div id="joystick-translation"></div>
+          
     </main>
-    
-    <footer>
-        <p>&copy; 2024 CPEFly. GNU GENERAL PUBLIC LICENSE.</p>
+
+    <footer class="footer is-narrow mt-auto has-background-text-20">
+        <p class="content has-text-centered">&copy; 2024 CPEFly. GNU GENERAL PUBLIC LICENSE.</p>
     </footer>
-    <script src="../static/script.js" defer></script>
 </body>
+
+
+
+<script src="../static/script.js" defer></script>
+
 </html>
