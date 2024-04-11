@@ -162,7 +162,7 @@ var keyWerePressed     = false;
 var stopSendingCommand = false;
 
 // We create our Joysticks
-const translation_joystickContainer = document.querySelector('.joystick-translation');
+const translation_joystickContainer = document.querySelector('#joystick-translation');
 const translation_dX_text = document.querySelector('#dX-translation');
 const translation_dY_text = document.querySelector('#dY-translation');
 
@@ -176,7 +176,7 @@ const translation_joystick = new VirtualJoystick(translation_joystickContainer, 
 });
 
 
-const height_joystickContainer = document.querySelector('.joystick-height');
+const height_joystickContainer = document.querySelector('#joystick-height');
 const height_dX_text = document.querySelector('#dX-height');
 const height_dY_text = document.querySelector('#dY-height');
 
@@ -188,9 +188,7 @@ const height_joystick = new VirtualJoystick(height_joystickContainer, {
     }
 });
 
-
-
-document.querySelector('.page').addEventListener("keydown", (event) => {
+document.body.addEventListener("keydown", (event) => {
     keyWerePressed = true;
     console.log(event.key)
     if (event.key == 'ArrowUp')   {commandValues[1] = 1}
@@ -198,7 +196,7 @@ document.querySelector('.page').addEventListener("keydown", (event) => {
     if (event.key == 'ArrowRight'){commandValues[0] = 1}
     if (event.key == 'ArrowLeft') {commandValues[0] = -1}
 });
-document.querySelector('.page').addEventListener("keyup", (event) => {
+document.body.addEventListener("keyup", (event) => {
     keyWerePressed = true;
     console.log(event.key)
     if (event.key == 'ArrowUp')   {commandValues[1] = 0}
