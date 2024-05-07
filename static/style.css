@@ -1,133 +1,91 @@
-/* Default styling */
-*
-{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: whitesmoke;
+body {
+    padding: 0;
+    margin: 0;
+    background: #f2f6e9;
+}
+.navbar {
+    background:#1a1318;
+}
+.nav-link,
+.navbar-brand {
+    color: #fff;
+    cursor: pointer;
+}
+.nav-link {
+    margin-right: 1em !important;
+}
+.nav-link:hover {
+    color: #000;
+}
+.navbar-collapse {
+    justify-content: flex-end;
 }
 
-#label
-{
-    color: orangered;
+
+.header {
+    background-image: url('../ressources/background_wallpaper.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding: 0;
 }
 
-
-/* Styling of the default page */
-.page
-{
-    background-color: #4B4B4B;
-    margin: 0%;
-}
-
-/* Styling of the page footer */
-footer
-{
-    background-color: #333;
-    font-size: 11px;
-
-    display: flex;
-    justify-content: center;
-    
+.overlay {
     position: absolute;
-    width: 100%;
-    bottom: 0;
+    min-height: 100%;
+    min-width: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.4);
 }
 
-
-/* Styling of the Navigation Bar */
-.barNavigation 
-{
-    background-color: #333;
-
-    border-bottom-left-radius: 16px;
-    border-bottom-right-radius: 16px;
-    margin: 20%;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding: 0;
-    max-width: 100%;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
+.description {
+	left: 50%;
+	position: absolute;
+	top: 45%;
+	transform: translate(-50%, -55%);
+	text-align: center;
 }
-    /* Styling of the list of links */
-    .barNavigation li
-    {
-        display: inline;
-        list-style-type: none;
-        margin : 40px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
+.description h1 {
+	color: #feb200;
+}
+.description p {
+	color: #fff;
+	font-size: 1.3rem;
+	line-height: 1.5;
+}
 
-    /* Further styling of the first element 'CPEFly' */
-    .barNavigation li:nth-child(1) a 
-    {
-        text-decoration: none; 
-        
-        font-size: 20px;
-    }
+.container{
+    min-width: 90%;
+    min-height: 75%;
+}
 
-    /* Further styling of the second and last element 'Info' */
-    .barNavigation li:nth-child(2) a 
-    {
-        text-decoration: none; 
-        font-size: 20px;
-    }
-
-/* Styling of the interface */
-.interface
-{
-    background-color: #333;
-
-    margin-top: 50px;
-    margin-bottom: 50px;
-    margin-left: 30px;
-    margin-right: 30px;
-
-    border-radius: 8px;
-    width:auto;
-    height: 100%;
-    max-width: 100%;
-
-    padding: 0;
-
-    display: flex;
+.features {
+	margin: 4em auto;
+	padding: 1em;
+	position: relative;
+}
+.row {
     justify-content: center;
-    align-items: center;
+}
+.col-lg-4 {
+    max-width: 20%;
+    margin: 2em;
+}
+.feature-title {
+	color: #ffb158;
+	font-size: 1.3rem;
+	font-weight: 500;
+	margin-bottom: 20px;
+	text-transform: uppercase;
+    text-align: center;
 }
 
-    .interface .sub
-    {
-        border : whitesmoke;
-        border-style: solid;
-        border-width: 3px;
-
-        margin:2%;
-        padding: 10px;
-        width: 30%;
-        height: auto;
-    }
-
-    .interface #controller
-    {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: stretch;
-    }
-
-    .interface #controller .controller-row
-    {
-        border : whitesmoke;
-        border-style:solid  ;
-        border-width: 3px;
-
-        margin:2%;
-        padding: 10px;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-    }
+#video{
+    min-width: 512px;
+    min-height: 400px;
+    background: #000000;
+}
+.features p {
+	color: #fff;
+}
