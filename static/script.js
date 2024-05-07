@@ -9,7 +9,7 @@ const translation_dY_text = document.querySelector('#dY-translation');
 
 
 const translation_joystick = new VirtualJoystick(translation_joystickContainer, {
-    width: 100, height: 100, color: 'gray', handleColor: 'white', handleRadius: 15,
+    width: 150, height: 150, color: 'gray', handleColor: 'white', handleRadius: 15,
     onChange: function(delta) {
         commandValues[0] = delta.x;
         commandValues[1] = delta.y;
@@ -22,7 +22,7 @@ const height_dX_text = document.querySelector('#dX-height');
 const height_dY_text = document.querySelector('#dY-height');
 
 const height_joystick = new VirtualJoystick(container=height_joystickContainer, options={
-    width: 100, height: 100, color: 'gray', handleColor: 'white', handleRadius: 15,
+    width: 150, height: 150, color: 'gray', handleColor: 'white', handleRadius: 15,
     onChange: function(delta) {
         commandValues[2] = delta.x;
         commandValues[3] = delta.y;

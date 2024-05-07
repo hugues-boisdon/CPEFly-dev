@@ -6,7 +6,7 @@ body {
     max-height: 100%;
 }
 .navbar {
-    background:#1a1318;
+    background:rgba(32, 0, 10, 0.7)
 }
 .nav-link,
 .navbar-brand {
@@ -45,6 +45,7 @@ body {
     border-radius: 1em;
 }
 
+
 .description {
 	left: 50%;
 	position: absolute;
@@ -67,31 +68,27 @@ body {
 }
 
 .features {
-	margin: 4em auto;
+	margin: 0;
 	padding: 1em;
 	position: relative;
 }
 .row {
     justify-content: center;
 }
-.col-lg-3 {
-    max-width: 20%;
-    min-height: 100%;
-    margin: 2em;
+.col-3 {
+    max-width: 15%;
+    min-height: 15%;
+    margin: 4em;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-#joystick-translation {
-    min-width: 100%;
-    min-height: 100%;
-    background: #00ff08;
-}
-#joystick-height {
-    min-width: 100%;
-    min-height: 100%;
-    background: #fb0000;
+.joystick-overlay{
+    position: absolute;
+    border-radius: 15%;
+    min-height: 170px;
+    min-width: 170px;
+    background: rgba(94, 0, 28, 0.5);
 }
 
 .feature-title {
@@ -104,9 +101,10 @@ body {
 
 #video{
     padding: 10px;
+    border-radius: 10px;
     min-width: 660px;
     min-height: 500px;
-    background: #000000;
+    background:rgba(32, 0, 10, 0.7)
 }
 
 .features p {

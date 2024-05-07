@@ -24,19 +24,19 @@ MIT license
                 );
 
                 this.joystick = document.createElement('div');
-                this.joystick.style.width = `${this.options.width}%`;
-                this.joystick.style.height = `${this.options.height}%`;
+                this.joystick.style.width = `${this.options.width}px`;
+                this.joystick.style.height = `${this.options.height}px`;
                 this.joystick.style.borderRadius = '50%';
                 this.joystick.style.backgroundColor = this.options.color;
                 this.joystick.style.position = 'relative';
                 this.joystick.style.touchAction = 'none';
                 this.joystick.style.border = '3px solid black';
-                this.joystick.style.opacity = '50%';
+                this.joystick.style.opacity = '90%';
                 this.container.appendChild(this.joystick);
 
                 this.handle = document.createElement('div');
-                this.handle.style.width = `${this.options.handleRadius * 2}%`;
-                this.handle.style.height = `${this.options.handleRadius * 2}%`;
+                this.handle.style.width = `${this.options.handleRadius * 2}px`;
+                this.handle.style.height = `${this.options.handleRadius * 2}px`;
                 this.handle.style.borderRadius = '50%';
                 this.handle.style.backgroundColor = this.options.handleColor;
                 this.handle.style.position = 'absolute';
