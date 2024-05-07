@@ -9,6 +9,7 @@ MIT license
 
   class VirtualJoystick {
             constructor(container, options = {}) {
+                console.log(container);
                 this.container = container;
                 this.options = Object.assign(
                     {
@@ -160,6 +161,4 @@ MIT license
         }
 
 
-
-export default VirtualJoystick;
       

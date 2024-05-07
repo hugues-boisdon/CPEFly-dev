@@ -9,7 +9,7 @@ const translation_dY_text = document.querySelector('#dY-translation');
 
 
 const translation_joystick = new VirtualJoystick(translation_joystickContainer, {
-    width: 100, height: 100, color: 'gray', handleColor: 'white', handleRadius: 20,
+    width: 200, height: 200, color: 'gray', handleColor: 'white', handleRadius: 40,
     onChange: function(delta) {
         commandValues[0] = delta.x;
         commandValues[1] = delta.y;
@@ -21,8 +21,8 @@ const height_joystickContainer = document.querySelector('#joystick-height');
 const height_dX_text = document.querySelector('#dX-height');
 const height_dY_text = document.querySelector('#dY-height');
 
-const height_joystick = new VirtualJoystick(height_joystickContainer, {
-    width: 100, height: 100, color: 'gray', handleColor: 'white', handleRadius: 20,
+const height_joystick = new VirtualJoystick(container=height_joystickContainer, options={
+    width: 200, height: 200, color: 'gray', handleColor: 'white', handleRadius: 40,
     onChange: function(delta) {
         commandValues[2] = delta.x;
         commandValues[3] = delta.y;
@@ -54,10 +54,10 @@ function updateCommandDisplay(command)
     var textTY = String(parseFloat(commandValues[1]).toFixed(4));
     var textHX = String(parseFloat(commandValues[2]).toFixed(4));
     var textHY = String(parseFloat(commandValues[3]).toFixed(4));
-    height_dX_text.innerHTML = "dX: " + textHX
-    height_dY_text.innerHTML = "dY: " + textHY
-    translation_dX_text.innerHTML = "dX: " + textTX
-    translation_dY_text.innerHTML = "dY: " + textTY
+    //height_dX_text.innerHTML = "dX: " + textHX
+    //height_dY_text.innerHTML = "dY: " + textHY
+    //translation_dX_text.innerHTML = "dX: " + textTX
+    //translation_dY_text.innerHTML = "dY: " + textTY
 }
 
 

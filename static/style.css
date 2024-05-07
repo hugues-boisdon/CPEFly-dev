@@ -38,6 +38,9 @@ body {
     top: 0;
     background: rgba(0, 0, 0, 0.4);
 }
+.container .overlay{
+    border-radius: 1em;
+}
 
 .description {
 	left: 50%;
@@ -69,23 +72,29 @@ body {
     justify-content: center;
 }
 .col-lg-4 {
-    max-width: 20%;
+    max-width: 15%;
+    min-height: 100%;
     margin: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 .feature-title {
 	color: #ffb158;
 	font-size: 1.3rem;
 	font-weight: 500;
-	margin-bottom: 20px;
 	text-transform: uppercase;
     text-align: center;
 }
 
 #video{
-    min-width: 512px;
-    min-height: 400px;
+    padding: 10px;
+    min-width: 660px;
+    min-height: 500px;
     background: #000000;
 }
+
 .features p {
 	color: #fff;
 }

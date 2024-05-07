@@ -1,48 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>CPEFly Web Interface</title>
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
-    <link rel="stylesheet" href="../static/bulma.css">
-    <link rel="stylesheet" href="../static/style_new.css">
-</head>
-<body class="hero has-background-text-10">
-
-    <header class="navbar has-background-text-20" role="navigation" aria-label="main navigation">
-        <a class="navbar-item" href="/">CPEFly</a>
-        <a class="navbar-item" href="/info">Info</a>
-    </header>
+    <head>
+        <title>CPEFly WebApp</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../static/style.css">
+	</head>
     
+	<body>
+        <script src="../static/jquery-3.7.1.js"></script>
 
-    <main class='columns is-vcentered '>
+        <header class="page-header header container-fluid">
+            <div class="overlay"></div>
 
-        <div class='column is-narrow has-text-centered'>
-            <p>Height</p>
-            <p id="dX-height">dX: 0.0000</p>
-            <p id="dY-height">dY: 0.0000</p>
-            <div id="joystick-height"></div>
-        </div>
-        <div class="sub">
-            <a id="label">Flux Vidéo</a>
-            <iframe src="http://<adresse_ip_raspberry>:5000/video_feed" width="640" height="480"></iframe>
-        </div>
+            <!--Navigation Bar-->
+            <nav class="navbar navbar-expand-md">
+                <a class="navbar-brand" href="/">CPEFly</a>
+                <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="main-navigation">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/data">Data</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/info">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-        <div class='column is-narrow has-text-centered'>
-            <p>Translation</p>
-            <p id="dX-translation">dX: 0.0000</p>
-            <p id="dY-translation">dY: 0.0000</p>
-        <div id="joystick-translation"></div>
-          
-    </main>
+            <div class="container features">
+                <div class="overlay"></div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div id="joystick-translation"></div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-4 col-sm-12" id="video">
+                        <iframe src="http://<adresse_ip_raspberry>:5000/video_feed" width="640" height="480"></iframe>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div id="joystick-height"></div>
+                    </div>
+                </div>
+            </div>
 
-    <footer class="footer is-narrow mt-auto has-background-text-20">
-        <p class="content has-text-centered">&copy; 2024 CPEFly. GNU GENERAL PUBLIC LICENSE.</p>
-    </footer>
-</body>
 
+        </header>
 
-
-<script src="../static/script.js" defer></script>
-
+        <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../static/utils_main.js"></script>
+        <script src="../static/virtual-joystick.js"></script>
+        <script src="../static/script.js"></script>
+	</body>
+	
 </html>
