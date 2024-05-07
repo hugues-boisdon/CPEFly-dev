@@ -1,4 +1,4 @@
-const barCanvas= document.getElementById("barcanvas");
+const barCanvas= document.getElementById("barCanvas");
 console.log("Live Server fonctionne correctement et les fichiers sont bien reliés !");
 const barChart = new Chart(barCanvas, {
     type: 'bar',
