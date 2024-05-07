@@ -10,6 +10,11 @@ def mainPage():
 def infoPage():
    if request.method == "GET":
       return render_template("info.html")
+   
+@app.route('/data')
+def dataPage():
+   if request.method == "GET":
+      return render_template("data.html")
 
 @app.route('/command', methods=['POST']) 
 def receiveMoveCommand(): 
