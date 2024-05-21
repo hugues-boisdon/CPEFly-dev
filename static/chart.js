@@ -25,15 +25,15 @@ const chartKx = new Chart(ctxKx, {
         scales: {
             x: {
                 type: 'linear',
-                min: 0, // Définir la valeur minimale de l'axe x
-                max: 100, // Définir la valeur maximale de l'axe x
+                min: 0,
+                max: 100,
                 ticks: {
-                    stepSize: 10 // Ajuster si nécessaire pour mieux espacer les ticks
+                    stepSize: 10
                 }
             },
             y: {
-                suggestedMin: 0, // Définir la valeur minimale de l'axe y
-                suggestedMax: 100, // Définir la valeur maximale de l'axe y
+                suggestedMin: 0,
+                suggestedMax: 100,
                 beginAtZero: true
             }
         }
@@ -56,15 +56,15 @@ const chartKy = new Chart(ctxKy, {
         scales: {
             x: {
                 type: 'linear',
-                min: 0, // Définir la valeur minimale de l'axe x
-                max: 100, // Définir la valeur maximale de l'axe x
+                min: 0,
+                max: 100,
                 ticks: {
-                    stepSize: 10 // Ajuster si nécessaire pour mieux espacer les ticks
+                    stepSize: 10
                 }
             },
             y: {
-                suggestedMin: 0, // Définir la valeur minimale de l'axe y
-                suggestedMax: 100, // Définir la valeur maximale de l'axe y
+                suggestedMin: 0,
+                suggestedMax: 100,
                 beginAtZero: true
             }
         }
@@ -75,9 +75,11 @@ const chartKy = new Chart(ctxKy, {
 function readDataFromJSONFile() {
     fetch('../data.json')
         .then(response => response.json())
-        .then(jsonData => {
-            t = jsonData.map(item => item.t);
-            data = jsonData.map(item => item.data);
+        .then(data => {
+            t = data.map(item => item.t);
+            let extractedData = data.map(item => item.data.split(';'));
+            kx = extractedData.map(item => parseFloat(item[0]));
+            ky = extractedData.map(item => parseFloat(item[1]));
             updateCharts();
         })
         .catch(error => {
@@ -85,14 +87,21 @@ function readDataFromJSONFile() {
         });
 }
 
-// Fonction pour mettre à jour les graphiques avec de nouvelles données
+// Fonction pour mettre à jour les graphiques avec les nouvelles données
 function updateCharts() {
-    chartKx.data.labels.push(t[-1]);
-    chartKx.data.datasets[0].data.push(kx[-1]);
-    chartKy.data.labels.push(t[-1]);
-    chartKy.data.datasets[0].data.push(ky[-1]);
+    // Mettre à jour les données du graphique Kx
+    chartKx.data.labels = t.slice(); // Copie des valeurs de t
+    chartKx.data.datasets[0].data = kx.slice(); // Copie des valeurs de kx
+
+    // Mettre à jour les données du graphique Ky
+    chartKy.data.labels = t.slice(); // Copie des valeurs de t
+    chartKy.data.datasets[0].data = ky.slice(); // Copie des valeurs de ky
+
+    // Mettre à jour les graphiques
     chartKx.update();
     chartKy.update();
+
+    console.log("Graphes mis à jour avec les nouvelles données.");
 }
 
 // Appel initial pour charger les données depuis le fichier JSON
