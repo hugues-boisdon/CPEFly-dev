@@ -33,7 +33,7 @@ const chartKx = new Chart(ctxKx, {
             },
             y: {
                 suggestedMin: 0, // Définir la valeur minimale de l'axe y
-                suggestedMax: 80, // Définir la valeur maximale de l'axe y
+                suggestedMax: 100, // Définir la valeur maximale de l'axe y
                 beginAtZero: true
             }
         }
@@ -64,7 +64,7 @@ const chartKy = new Chart(ctxKy, {
             },
             y: {
                 suggestedMin: 0, // Définir la valeur minimale de l'axe y
-                suggestedMax: 80, // Définir la valeur maximale de l'axe y
+                suggestedMax: 100, // Définir la valeur maximale de l'axe y
                 beginAtZero: true
             }
         }
