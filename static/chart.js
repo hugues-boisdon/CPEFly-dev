@@ -75,23 +75,15 @@ const chartKy = new Chart(ctxKy, {
 function readDataFromJSONFile() {
     fetch('../data.json')
         .then(response => response.json())
-        .then(data => {
-            t = data.t;
-            
-            // Séparation des données 'kx' et 'ky' depuis le champ 'data'
-            data.data.forEach(item => {
-                const [kx_val, ky_val] = item.split(';').map(parseFloat);
-                kx.push(kx_val);
-                ky.push(ky_val);
-            });
-            
+        .then(jsonData => {
+            t = jsonData.map(item => item.t);
+            data = jsonData.map(item => item.data);
             updateCharts();
         })
         .catch(error => {
             console.error('Erreur lors de la lecture du fichier JSON :', error);
         });
 }
-
 
 // Fonction pour mettre à jour les graphiques avec de nouvelles données
 function updateCharts() {
@@ -101,7 +93,6 @@ function updateCharts() {
     chartKy.data.datasets[0].data.push(ky[-1]);
     chartKx.update();
     chartKy.update();
-    console.log("Mise à jour des graphiques avec les nouvelles données.");
 }
 
 // Appel initial pour charger les données depuis le fichier JSON

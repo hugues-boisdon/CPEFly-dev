@@ -30,12 +30,14 @@ while True:
             ky.append(float(ky_val))
             d.append(float(d_val))
             t.append(len(t) + 1)
-
+            
             # Exportation des données vers data.json
             with open('data.json', 'w') as f:
-                # Formatage des données avec 1 décimale
-                formatted_data = ['{:.1f};{:.1f};{:.1f}'.format(kx_val, ky_val, d_val) for kx_val, ky_val, d_val in zip(kx, ky, d)]
-                json.dump({'t': t, 'data': formatted_data}, f)
-                print("Données enregistrées dans data.json:", formatted_data)
+                # Création de la liste des données formatées en colonnes
+                formatted_data = [{'t': t_val, 'data': '{:.1f};{:.1f};{:.1f}'.format(kx_val, ky_val, d_val)} for t_val, kx_val, ky_val, d_val in zip(t, kx, ky, d)]
+                json.dump(formatted_data, f, indent=4)  # Indentation pour une meilleure lisibilité
+                print("Données enregistrées dans data.json:")
+                for item in formatted_data:
+                    print(item)  # Afficher chaque élément dans la console
 
         counter += 1
