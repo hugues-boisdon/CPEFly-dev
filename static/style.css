@@ -9,8 +9,8 @@
 
 .navigation-bar
 {
-    min-width:  100%;
-    max-width: 100%;
+    min-width:  860px;
+    max-width: 1260px;
     min-height: 80px;
     max-height: 80px;
     padding: 12px;
