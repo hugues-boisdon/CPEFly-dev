@@ -13,12 +13,14 @@ viewport.setAttribute('content', content);
 
 
 
-let log = fetch("/log", {
-    method: 'POST',
-    mode: 'cors',
-    headers: {
-    'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(target)
-});
-console.log(target)
+fetch("/log", {
+  method: "POST",
+  body: JSON.stringify({
+    message: target,
+  }),
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  }
+})
+  .then((response) => response.json())
+  .then((json) => console.log(json));

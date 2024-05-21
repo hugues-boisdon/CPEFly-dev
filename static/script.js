@@ -90,15 +90,17 @@ function updateMoveCommand()
 
 function sendCommand(command) 
 { 
-    let response = fetch("/command", {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-            'Content-Type': 'application/json'
-           },
-            body: JSON.stringify(command)
-        });
-        return response;
+    fetch("/command", {
+        method: "POST",
+        body: JSON.stringify({
+          command: command,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
 } 
 
 

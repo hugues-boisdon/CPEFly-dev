@@ -31,7 +31,7 @@ def dataPage():
 @app.route('/command', methods=['POST']) 
 def receiveMoveCommand(): 
    data = request.get_json() 
-   print(f'received Command: {data}\n')
+   print(f'{data}\n')
    return jsonify(result=data)
  
  
@@ -39,7 +39,7 @@ def receiveMoveCommand():
 def log(): 
    data = request.get_json() 
    print(f'{data}\n')
-   return jsonify(data)
+   return jsonify(result = data)
 
 
 @app.route('/video_feed')
