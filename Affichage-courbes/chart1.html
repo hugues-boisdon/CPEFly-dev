@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Chart JS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <style>
+        /* Supprimer toute référence à l'image de fond uniquement sur cette page */
+        .no-background-image .header {
+            background-image: none;
+        }
+        /* Supprimer l'overlay */
+        .overlay {
+            display: none;
+        }
+        /* Redimensionner les courbes */
+        #canvasKx, #canvasKy {
+            height: 300px; /* Ajustez la hauteur selon vos besoins */
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header header container-fluid">
+        <div class="overlay"></div>
+        
+        <!--Navigation Bar-->
+        <nav class="navbar navbar-expand-md">
+            <a class="navbar-brand" href="/">CPEFly</a>
+            <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="main-navigation">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/data">Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/info">About</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="description">
+            <h1>Bienvenue sur la Data Page!</h1>
+            <p>Les courbes ci-dessous permettent la configuration du drone grâce à l'affichage des coefficients de Kalman en fonction du temps (en temps réel) .</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <canvas id="canvasKx"></canvas> 
+            </div>
+            <div class="col-md-6">
+                <canvas id="canvasKy"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../static/jquery-3.7.1.js"></script>
+    <script src="script.js"></script>
+    <script src="../static/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../static/utils_main.js"></script>
+</body>
+</html>

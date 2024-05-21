@@ -1,5 +1,4 @@
-from flask import Flask, render_template, request, url_for, jsonify, Response
-import subprocess
+from flask import Flask, render_template, request, url_for, jsonify, Response, redirect
 
 app = Flask(__name__)
 
@@ -14,10 +13,15 @@ def infoPage():
    if request.method == "GET":
       return render_template("info.html")
    
-@app.route('/navdata')
+# @app.route('/data')
+# def dataPage():
+#    if request.method == "GET":
+#       return render_template("data.html")
+   
+@app.route('/data')
 def dataPage():
-   if request.method == "GET":
-      return render_template("data.html")
+   # Rediriger vers l'URL de Live Server (remplacez le port si nécessaire)
+   return render_template('chart.html')
 
 @app.route('/command', methods=['POST']) 
 def receiveMoveCommand(): 
