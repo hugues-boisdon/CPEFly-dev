@@ -1,9 +1,9 @@
-import serial
+from serial import Serial
 import json
 
 # 'COM3' à remplacer par le port série du périphérique
 
-ser = serial.Serial('COM7', 115200)
+ser = Serial('COM7', 115200)
 
 t = []
 kx = []

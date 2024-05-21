@@ -1,26 +1,37 @@
 
 .page
 {
-    height: 100vh; 
-    width: 100vw;
-
     padding: 0%;
-
-    background-color: #2D3250;
+    background-color: (255,255,255,1);
+    
 }
 
 
 .navigation-bar
 {
-    max-width:  120vh;
-    min-width:  120vh;
-    min-height: 8vh;
-    max-height: 8vh;
+    min-width:  100%;
+    max-width: 100%;
+    min-height: 80px;
+    max-height: 80px;
+    padding: 12px;
+    margin: 0;
+    margin-bottom: 12px;
 
-    padding: 10px;
-    margin: 0%;
+    background-color: rgba(0,0,0,0);
+}
 
-    background-color: #7077A1;
+.navbar-brand
+{
+    color: rgb(37, 37, 37);
+    font-size: 32px;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.nav-link
+{
+    color: rgb(95, 95, 95);
+    font-size: 24px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 
@@ -29,21 +40,19 @@
 /*Centered block with main UI components*/
 .centered-view
 {
-    max-width: 120vh;
-    min-width: 120vh;
+    max-width: 1260px;
+    min-width: 860px;
     min-height: 100vh;
-    max-height: 100vh;
 
     padding: 0%;
 
-    background-color: #7077A1;
+    background-color: rgba(0,0,0,0);
     border-radius: 2px;
 }
 
 /*Row container for the 3 parts UI*/
 .row-ui
 {
-    min-height: 90vh;
     margin : 0%;
 }
 
@@ -56,9 +65,10 @@
     max-width: 660px;
     
     padding: 0%;
-    margin: 0%;
+    margin: 24px;
+    border-radius: 12px;
 
-    background-color: #424769;
+    background-color: rgba(0,0,0,0.1);
 }
 
 .side-panel
@@ -66,11 +76,11 @@
     min-height: 100px;
     max-height: 500px;
     min-width: 100px;
-    max-width: 100px;
+    max-width: 430px;
 
     padding: 0%;
 
-    background-color: #F6B17A;
+    background-color: rgba(0,0,0,0);
 }
 
 .video-flux
@@ -87,26 +97,39 @@
 
 .command-panel
 {
-    min-height: 10px;
-    max-height: 10px;
-    min-width: 120vh;
-    max-width: 120vh;
+    min-height: 60px;
+    max-height: 60px;
+    min-width: 860px;
+    max-width: 1260px;
     
     padding: 0%;
+    border-radius: 12px;
 
-    background-color: lightgreen;
+    background-color: rgba(0,0,0,0.05);
 }
 
 .joystick
 {
-    min-height: 100px;
-    min-width:  100px;
-    max-height: 100px;
-    max-width:  100px;
+    min-height: 300px;
+    min-width:  300px;
+    max-height: 300px;
+    max-width:  300px;
 
     margin: 10px;
     padding: 0px;
-    border-radius: 10px;
+    border-radius: 12px;
 
-    background: lightgoldenrodyellow;
+    background:rgba(0,0,0,0);
+}
+
+.panel
+{
+    min-height: 60px;
+    min-width: 860px;
+    max-width: 1260px;
+    
+    padding: 12px;
+    border-radius: 12px;
+
+    background-color: rgba(0,0,0,0.05);
 }

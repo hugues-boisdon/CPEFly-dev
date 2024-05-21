@@ -4,11 +4,48 @@
         <title>Chart JS</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../static/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../static/style.css">
+	</head>
         <script src ="https://cdn.jsdelivr.net/npm/chart.js"></script> 
     </head>
-    <body>
-        <canvas id="canvasKx"></canvas> 
-        <canvas id="canvasKy"></canvas>
+    <body class="container-fluid w-100 h-100 d-flex page align-items-center justify-items-center">
+        <!--Bootstrap jQuery dependency-->
+        <script src="../static/jquery-3.7.1.js"></script>
+
+
+        <!--Centered UI Box-->
+        <div class="centered-view container-fluid col">
+
+            <nav class="navigation-bar navbar navbar-expand-md">
+                <a class="navbar-brand" href="/">CPEFly</a>
+                <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="main-navigation">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/data">Data</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/info">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+
+
+        <div class="panel container">
+            <canvas id="canvasKx"></canvas> 
+            <canvas id="canvasKy"></canvas>
+        </div>
+
+        <!--Bootstrap js dependency-->
+        <script src="../static/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!--Custom js dependency-->
+        <script src="../static/responsive.js"></script>
+        
         <script src="..\static\chart.js"></script>
     </body>
 </html>
