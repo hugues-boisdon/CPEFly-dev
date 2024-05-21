@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CPEFly Web Interface</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--Bootstrap css dependency-->
+        <link rel="stylesheet" href="../static/bootstrap/dist/css/bootstrap.min.css">
+        <!--Custom css dependency-->
+        <link rel="stylesheet" href="../static/style.css">
+	</head>
+    
+	<body class="container-fluid w-100 h-100 d-flex page align-items-center justify-items-center">
+        <!--Bootstrap jQuery dependency-->
+        <script src="../static/jquery-3.7.1.js"></script>
+
+
+        <!--Centered UI Box-->
+        <div class="centered-view container-fluid col">
+
+            <nav class="navigation-bar navbar row">
+                <a class="navbar-brand" href="/info">Info</a>
+                <a class="navbar-brand" href="/">CPEFly</a>
+                <a class="navbar-brand" href="/navdata">Navigation Data</a>
+            </nav>
+
+
+            <!--UI with 3 columns-->
+            <div class="row-ui row d-flex justify-content-center">
+
+                <!--Left Side Panel-->
+                <div class="side-panel container col-sm  order-3 order-lg-1 
+                 d-flex align-items-center justify-content-center">
+                    <div class="joystick d-flex align-items-center justify-content-center" id="joystick-height"></div>
+                </div>
+
+                <!--Middle Panel-->
+                <div class=" middle-panel container col-sm  order-1 order-lg-2 ">
+                    <div class="video-flux"></div>
+                </div>
+
+                <!--Right Side Panel-->
+                <div class="side-panel container-fluid col-sm  order-4 order-lg-3
+                 d-flex align-items-center justify-content-center">
+                    <div class="joystick d-flex align-items-center justify-content-center" id="joystick-translation"></div>
+                </div>
+
+                <!--Data Panel-->
+                <div class="command-panel container col-sm  order-2 order-lg-4"></div>
+            </div>
+            
+        </div>
+
+
+
+
+
+        <!--Bootstrap js dependency-->
+        <script src="../static/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!--Custom js dependency-->
+        <script src="../static/virtual-joystick.js"></script>
+        <script src="../static/script.js"></script>
+	</body>
+	
+</html>
