@@ -71,34 +71,31 @@ const chartKy = new Chart(ctxKy, {
     }
 });
 
-// Fonction pour lire les données depuis un fichier JSON
-function readDataFromJSONFile() {
-    fetch('../data.json')
+
+// Fonction pour mettre à jour les graphiques avec de nouvelles données
+function updateCharts() {
+    fetch('/updateCharts')
         .then(response => response.json())
         .then(jsonData => {
             t = jsonData.map(item => item.t);
-            data = jsonData.map(item => item.data);
+            kx = jsonData.map(item => item.data);
+            ky = jsonData.map(item => item.data);
             updateCharts();
         })
         .catch(error => {
             console.error('Erreur lors de la lecture du fichier JSON :', error);
         });
-}
-
-// Fonction pour mettre à jour les graphiques avec de nouvelles données
-function updateCharts() {
+ 
     chartKx.data.labels.push(t[-1]);
     chartKx.data.datasets[0].data.push(kx[-1]);
     chartKy.data.labels.push(t[-1]);
     chartKy.data.datasets[0].data.push(ky[-1]);
     chartKx.update();
     chartKy.update();
+    console.log("Données après mise à jour - t:", t);
+    console.log("Données après mise à jour - Kx:", kx);
+    console.log("Données après mise à jour - Ky:", ky);
 }
 
-// Appel initial pour charger les données depuis le fichier JSON
-readDataFromJSONFile();
 
-// Lignes de test pour vérifier les données après leur mise à jour
-console.log("Données après mise à jour - t:", t);
-console.log("Données après mise à jour - Kx:", kx);
-console.log("Données après mise à jour - Ky:", ky);
+let commandRoutineId = setInterval(updateCharts, 1000)
