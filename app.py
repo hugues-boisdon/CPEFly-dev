@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, url_for, jsonify, Response, redirect
+import subprocess
 
 app = Flask(__name__)
 
@@ -25,15 +26,20 @@ def dataPage():
 
 @app.route('/command', methods=['POST']) 
 def receiveMoveCommand(): 
-    data = request.get_json() 
-    print(f'received Command: {data}\n')
-    return jsonify(result=data)
+   data = request.get_json() 
+   print(f'received Command: {data}\n')
+   return jsonify(result=data)
  
+@app.route('/log', methods=['POST']) 
+def log(): 
+   data = request.get_json() 
+   print(f'{data}\n')
+   return jsonify(data)
 
 @app.route('/video_feed')
 def video_feed():
-    # MIME type peut varier selon le format de sortie de votre flux vidéo
-    return Response(gen_frames(), mimetype='video/h264')
+   # MIME type peut varier selon le format de sortie de votre flux vidéo
+   return Response(gen_frames(), mimetype='video/h264')
 
 
 

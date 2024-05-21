@@ -19,35 +19,47 @@
         <!--Centered UI Box-->
         <div class="centered-view container-fluid col">
 
-            <nav class="navigation-bar navbar row">
-                <a class="navbar-brand" href="/info">Info</a>
+            <nav class="navigation-bar navbar navbar-expand-md">
                 <a class="navbar-brand" href="/">CPEFly</a>
-                <a class="navbar-brand" href="/data">Navigation Data</a>
+                <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="main-navigation">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/data">Data</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/info">About</a>
+                        </li>
+                    </ul>
+                </div>
             </nav>
+
 
 
             <!--UI with 3 columns-->
             <div class="row-ui row d-flex justify-content-center">
 
                 <!--Left Side Panel-->
-                <div class="side-panel container col-sm  order-3 order-md-1 
+                <div class="side-panel container col-sm  order-3 order-lg-1 
                  d-flex align-items-center justify-content-center">
                     <div class="joystick d-flex align-items-center justify-content-center" id="joystick-height"></div>
                 </div>
 
                 <!--Middle Panel-->
-                <div class=" middle-panel container col-sm  order-1 order-md-2 ">
+                <div class=" middle-panel container col-sm  order-1 order-lg-2 ">
                     <div class="video-flux"></div>
                 </div>
 
                 <!--Right Side Panel-->
-                <div class="side-panel container-fluid col-sm  order-4 order-md-3
+                <div class="side-panel container-fluid col-sm  order-4 order-lg-3
                  d-flex align-items-center justify-content-center">
                     <div class="joystick d-flex align-items-center justify-content-center" id="joystick-translation"></div>
                 </div>
 
                 <!--Data Panel-->
-                <div class="command-panel container col-sm  order-2 order-md-4"></div>
+                <div class="command-panel container col-sm  order-2 order-lg-4"></div>
             </div>
             
         </div>
@@ -59,6 +71,7 @@
         <!--Bootstrap js dependency-->
         <script src="../static/bootstrap/dist/js/bootstrap.min.js"></script>
         <!--Custom js dependency-->
+        <script src="../static/responsive.js"></script>
         <script src="../static/virtual-joystick.js"></script>
         <script src="../static/script.js"></script>
 	</body>
