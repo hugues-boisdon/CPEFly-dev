@@ -5,7 +5,7 @@ console.log("Live Server fonctionne correctement et les fichiers sont bien reli�
 
 // Données fictives 
 const t = [1, 2, 3, 4, 5, 6]; 
-const kx = [0.5, 0.8, 1.2, 1.5, 1.7, 2.0]; 
+const kx = [0.5, 3, 3, 2.5, 1.7, 2.0]; 
 const ky = [0.3, 0.6, 0.9, 1.2, 1.5, 1.8]; 
 
 console.log("Données pour la première courbe (Kx):", t.map((value, index) => ({ t: value, Kx: kx[index] })));
