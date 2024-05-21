@@ -87,10 +87,10 @@ function readDataFromJSONFile() {
 
 // Fonction pour mettre à jour les graphiques avec de nouvelles données
 function updateCharts() {
-    chartKx.data.labels = t;
-    chartKx.data.datasets[0].data = data.map(item => parseFloat(item.split(';')[0])); // Extracting Kx from data
-    chartKy.data.labels = t;
-    chartKy.data.datasets[0].data = data.map(item => parseFloat(item.split(';')[1])); // Extracting Ky from data
+    chartKx.data.labels.push(t[-1]);
+    chartKx.data.datasets[0].data.push(kx[-1]);
+    chartKy.data.labels.push(t[-1]);
+    chartKy.data.datasets[0].data.push(ky[-1]);
     chartKx.update();
     chartKy.update();
 }
