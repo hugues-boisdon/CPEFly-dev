@@ -1,12 +1,7 @@
-const ctxKx = document.getElementById('canvasKx');
-const ctxKy = document.getElementById('canvasKy');
+const ctxKx = document.getElementById('canvasKx').getContext('2d');;
+const ctxKy = document.getElementById('canvasKy').getContext('2d');;
 
 console.log("Live Server fonctionne correctement et les fichiers sont bien reliés !");
-
-// Tableaux pour stocker les données
-let t = [];
-let kx = [];
-let ky = [];
 
 // Création des graphiques Chart.js avec des données initiales vides
 const chartKx = new Chart(ctxKx, {
@@ -16,25 +11,33 @@ const chartKx = new Chart(ctxKx, {
         datasets: [{
             label: 'Kx',
             data: [],
-            borderColor: 'red',
-            borderWidth: 1,
-            fill: false
+            borderColor: '#fcba03',
+            borderWidth: 2,
+            fill: true,
+            backgroundColor: 'rgba(252, 186, 3, 0.1)',
+            tension: 0.35,   
+            pointBorderColor: 'rgba(0, 0, 0, 0)',
+            pointBackgroundColor: 'rgba(0, 0, 0, 0)',
         }]
     },
     options: {
+        responsive: true,
+        animation: false,
         scales: {
             x: {
                 type: 'linear',
-                min: 0, // Définir la valeur minimale de l'axe x
-                max: 100, // Définir la valeur maximale de l'axe x
                 ticks: {
                     stepSize: 10 // Ajuster si nécessaire pour mieux espacer les ticks
+                },
+                title: {
+                    display: true,
+                    text: 'Time (seconds)' // X-axis title with units
                 }
             },
             y: {
                 suggestedMin: 0, // Définir la valeur minimale de l'axe y
                 suggestedMax: 100, // Définir la valeur maximale de l'axe y
-                beginAtZero: true
+                beginAtZero: true,
             }
         }
     }
@@ -47,19 +50,27 @@ const chartKy = new Chart(ctxKy, {
         datasets: [{
             label: 'Ky',
             data: [],
-            borderColor: 'blue',
-            borderWidth: 1,
-            fill: false
+            borderColor: '#03fcbe',
+            borderWidth: 2,
+            fill: true,
+            backgroundColor: 'rgba(3, 252, 190, 0.1)',
+            tension: 0.35,
+            pointBorderColor: 'rgba(0, 0, 0, 0)',
+            pointBackgroundColor: 'rgba(0, 0, 0, 0)',
         }]
     },
     options: {
+        responsive: true,
+        animation: false,
         scales: {
             x: {
                 type: 'linear',
-                min: 0, // Définir la valeur minimale de l'axe x
-                max: 100, // Définir la valeur maximale de l'axe x
                 ticks: {
                     stepSize: 10 // Ajuster si nécessaire pour mieux espacer les ticks
+                },
+                title: {
+                    display: true,
+                    text: 'Time (seconds)' // X-axis title with units
                 }
             },
             y: {
@@ -74,28 +85,31 @@ const chartKy = new Chart(ctxKy, {
 
 // Fonction pour mettre à jour les graphiques avec de nouvelles données
 function updateCharts() {
-    fetch('/updateCharts')
+    fetch('/get_data')
         .then(response => response.json())
         .then(jsonData => {
-            t = jsonData.map(item => item.t);
-            kx = jsonData.map(item => item.data);
-            ky = jsonData.map(item => item.data);
-            updateCharts();
+            t_last = jsonData.t;
+            kx_last = jsonData.kx;
+            ky_last = jsonData.ky;
+            if(!(chartKx.data.labels.includes(t_last)))
+            {
+                chartKx.data.labels.push(t_last);
+                chartKx.data.datasets[0].data.push(kx_last);
+                console.log("Données après mise à jour - Kx:", kx_last);
+            }
+            if(!(chartKy.data.labels.includes(t_last)))
+            {
+                chartKy.data.labels.push(t_last);
+                chartKy.data.datasets[0].data.push(ky_last);
+                console.log("Données après mise à jour - Ky:", ky_last);
+            }
         })
         .catch(error => {
             console.error('Erreur lors de la lecture du fichier JSON :', error);
         });
- 
-    chartKx.data.labels.push(t[-1]);
-    chartKx.data.datasets[0].data.push(kx[-1]);
-    chartKy.data.labels.push(t[-1]);
-    chartKy.data.datasets[0].data.push(ky[-1]);
-    chartKx.update();
-    chartKy.update();
-    console.log("Données après mise à jour - t:", t);
-    console.log("Données après mise à jour - Kx:", kx);
-    console.log("Données après mise à jour - Ky:", ky);
+    chartKx.update('active');
+    chartKy.update('active');
 }
 
 
-let commandRoutineId = setInterval(updateCharts, 1000)
+let commandRoutineId = setInterval(func = updateCharts, delay = 500)

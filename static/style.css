@@ -133,3 +133,20 @@
 
     background-color: rgba(0,0,0,0.03);
 }
+
+.text
+{
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    font-size: 24px;
+}
+
+canvas
+{
+    max-width: 90vw;
+    min-height: 30vh;
+    max-height: 30vh;
+    margin-bottom: 5vh;
+}
