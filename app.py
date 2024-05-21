@@ -9,10 +9,12 @@ app = Flask(__name__)
 def mainPage():
    return render_template('index.html')
 
+
 @app.route('/info')
 def infoPage():
    if request.method == "GET":
       return render_template("info.html")
+   
    
 # @app.route('/data')
 # def dataPage():
@@ -22,7 +24,9 @@ def infoPage():
 @app.route('/data')
 def dataPage():
    # Rediriger vers l'URL de Live Server (remplacez le port si nécessaire)
-   return render_template('chart.html')
+   if request.method == "GET":
+      return render_template('chart.html')
+
 
 @app.route('/command', methods=['POST']) 
 def receiveMoveCommand(): 
@@ -30,11 +34,13 @@ def receiveMoveCommand():
    print(f'received Command: {data}\n')
    return jsonify(result=data)
  
+ 
 @app.route('/log', methods=['POST']) 
 def log(): 
    data = request.get_json() 
    print(f'{data}\n')
    return jsonify(data)
+
 
 @app.route('/video_feed')
 def video_feed():
