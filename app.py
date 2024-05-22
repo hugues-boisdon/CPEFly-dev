@@ -3,6 +3,15 @@ from flask import Flask, render_template, request, url_for, jsonify, Response, r
 # from flask_apscheduler import APScheduler
 import subprocess
 import serial
+from importlib import import_module
+import os
+from picamera2 import picamera2
+
+# import camera driver
+if os.environ.get('CAMERA'):
+    Camera = import_module('camera_' + os.environ['CAMERA']).Camera
+else:
+    from camera import Camera
 
 # import getdata as transmissionController
 from time import time
@@ -49,25 +58,19 @@ def log():
    return jsonify(result = data)
 
 
+def gen(camera):
+    """Video streaming generator function."""
+    yield b'--frame\r\n'
+    while True:
+        frame = camera.get_frame()
+        yield b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n--frame\r\n'
+
+
 @app.route('/video_feed')
 def video_feed():
-   # MIME type peut varier selon le format de sortie de votre flux vidéo
-   return Response(gen_frames(), mimetype='video/h264')
-
-
-#video feed method
-def gen_frames():  
-   # Commande libcamera-vid pour capturer la vidéo
-   # Utilisation de `-t 0` pour un flux continu, `-o -` pour sortir sur stdout
-   cmd = "libcamera-vid -t 0 -o -"
-   p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-
-   while True:
-      # Lire le flux de stdout de libcamera-vid
-      data = p.stdout.read(1024)
-      if not data:
-         break
-      yield (data)
+    """Video streaming route. Put this in the src attribute of an img tag."""
+    return Response(gen(Camera()),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
       
 """ 
 timer = 0
