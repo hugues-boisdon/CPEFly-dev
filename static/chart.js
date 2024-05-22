@@ -95,7 +95,6 @@ function updateCharts() {
     console.log("Données après mise à jour - t:", t);
     console.log("Données après mise à jour - Kx:", kx);
     console.log("Données après mise à jour - Ky:", ky);
-}
 
 
 let commandRoutineId = setInterval(updateCharts, 1000)
