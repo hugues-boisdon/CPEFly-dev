@@ -1,18 +1,19 @@
 import json
 from flask import Flask, render_template, request, url_for, jsonify, Response, redirect 
-from flask_apscheduler import APScheduler
+# from flask_apscheduler import APScheduler
 import subprocess
+import serial
 
-import getdata as transmissionController
+# import getdata as transmissionController
 from time import time
 
-class Config:
-    SCHEDULER_API_ENABLED = True
+# class Config:
+#     SCHEDULER_API_ENABLED = True
 
 app = Flask(__name__)
-app.config.from_object(Config())
-scheduler = APScheduler()
-scheduler.init_app(app)
+# app.config.from_object(Config())
+# scheduler = APScheduler()
+# scheduler.init_app(app)
 
 # Routing
 
@@ -29,7 +30,7 @@ def infoPage():
    
 @app.route('/data')
 def dataPage():
-   # Rediriger vers l'URL de Live Server (remplacez le port si nécessaire)
+   # rdiriger vers chart (local)
    if request.method == "GET":
       return render_template('chart.html')
 
@@ -76,14 +77,31 @@ def data_transmission():
    timer += 1
     """
 
-@app.route('/updateCharts')
-def update_charts():
-   with open('data.json') as f:
-      data = json.load(f)
-   return data
+# @app.route('/updateCharts')
+# def update_charts():
+#    with open('data.json') as f:
+#       data = json.load(f)
+#    return data
+
+@app.route('/get_data')
+def get_data():
+    ser = serial.Serial('COM7', 115200)
+    data = ser.readline().decode().strip()
+    
+    # Nettoyage des données
+    cleaned_data = ''.join(char if char.isdigit() or char in ['-', '.', ';'] else ' ' for char in data)
+    values = cleaned_data.strip().split(';')
+    
+    # Assurez-vous que la chaîne de données contient tous les éléments attendus
+    if len(values) == 3:
+        kx_val, ky_val, d_val = values[0], values[1].replace('-', ''), values[2]
+        formatted_data = {'kx': float(kx_val), 'ky': float(ky_val), 'd': float(d_val)}
+        return jsonify(formatted_data)
+    else:
+        return jsonify({'error': 'Invalid data format'})
 
 
 
 if __name__ == '__main__':
-   scheduler.start()
+   # scheduler.start()
    app.run()

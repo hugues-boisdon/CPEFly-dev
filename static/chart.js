@@ -74,17 +74,25 @@ const chartKy = new Chart(ctxKy, {
 
 // Fonction pour mettre à jour les graphiques avec de nouvelles données
 function updateCharts() {
-    fetch('/updateCharts')
+    fetch('/get_data')  // Appeler l'API pour récupérer les données série
         .then(response => response.json())
-        .then(jsonData => {
-            t = jsonData.map(item => item.t);
-            kx = jsonData.map(item => item.data);
-            ky = jsonData.map(item => item.data);
-            updateCharts();
+        .then(data => {
+            // Mettre à jour les données du graphique Kx
+            chartKx.data.labels.push(data.t); // Si t est également renvoyé
+            chartKx.data.datasets[0].data.push(data.kx);
+
+            // Mettre à jour les données du graphique Ky
+            chartKy.data.labels.push(data.t); // Si t est également renvoyé
+            chartKy.data.datasets[0].data.push(data.ky);
+
+            // Mettre à jour les graphiques
+            chartKx.update();
+            chartKy.update();
         })
         .catch(error => {
-            console.error('Erreur lors de la lecture du fichier JSON :', error);
+            console.error('Erreur lors de la récupération des données série :', error);
         });
+}
  
     chartKx.data.labels.push(t[-1]);
     chartKx.data.datasets[0].data.push(kx[-1]);
