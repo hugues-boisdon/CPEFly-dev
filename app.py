@@ -75,12 +75,12 @@ def data_receive():
    dataService.receiveData()
 """
 
-@scheduler.task('interval', id='data_receive_fake', seconds=0.05)
+@scheduler.task('interval', id='data_receive_fake', seconds=0.1)
 def data_receive_fake():
    dataService.receiveDataFAKE()
 
 
-@scheduler.task('interval', id='data_save', seconds=5)
+@scheduler.task('interval', id='data_save', seconds=2)
 def data_save():
    dataService.saveDataFile()
    print("[Data Saved Succesfully!]")

@@ -1,34 +1,69 @@
-import serial, json, time, os, random
+import serial, json, os, random, time
+from datetime import datetime
+
 
 filePath = ""
+topOfFile = True
 
 def getFilePath():
     global filePath
     return filePath
 
 def getNewFilePath():
-    global filePath; global startTime
-    startTime = time.time()
-    t = time.strftime("%Y-%m-%d", time.localtime(time.time()))
+    global filePath; global startTime; global topOfFile
+    dt = datetime.now().strftime(r'%d_%m_%Y')
     c = 0
     for file in os.listdir(r'./data/'):
-        cPrim = file.replace(t,'').split('.')[0].replace('_','')
+        cPrim = file.replace(dt,'').split('.')[0].replace('_','')
         if(cPrim.isdigit() and (int)(cPrim) >= c):
             c = (int)(cPrim)+1
-    filePath = f"./data/{t}_{c}.json"
+    filePath = f"./data/{dt}_{c}.json"
+    topOfFile = True
     saveDataFile()
 
-def saveDataFile():
-    global filePath
-    global t; global kx; global ky; global d     
-    with(open(filePath, 'w')) as f:
-        formatted_data = [{'t': t_val, 'kx': kx_val, 'ky': ky_val, 'd': d_val } for t_val, kx_val, ky_val, d_val in zip(t, kx, ky, d)]
-        json.dump(formatted_data, f, indent=4)
 
+def delete_last_line(filename):
+    with open(filename, 'r+b') as file:
+        file.seek(0, 2)
+        end_pos = file.tell() 
+        if end_pos == 0: 
+            return
+        pos = end_pos - 1 
+        while pos > 0:
+            file.seek(pos)
+            if file.read(1) == b'\n': 
+                break
+            pos -= 1
+        if pos == 0: 
+            file.seek(0)
+        file.truncate(pos) 
+        
+
+def saveDataFile():
+    global filePath; global topOfFile
+    global t; global kx; global ky; global d     
+    try: 
+        with(open(filePath, 'x')) as f:
+            f.write("[\n")
+    except FileExistsError: 
+        delete_last_line(filePath)
+        with(open(filePath, 'a')) as f:
+            formatted_data = [{'t': t_val, 'kx': kx_val, 'ky': ky_val, 'd': d_val } for t_val, kx_val, ky_val, d_val in zip(t, kx, ky, d)]
+                        
+            formatted_str = json.dumps(formatted_data, indent=4)
+            if(topOfFile): 
+                f.writelines(formatted_str[1:])
+                topOfFile = False
+            else : f.writelines(','+formatted_str[1:])
+            t = [t[-1]];kx = [kx[-1]];ky = [ky[-1]];d = [d[-1]]
+
+
+    
 t = []
 kx = []
 ky = []
 d = []
+
 def receiveData():
     global t; global kx; global ky; global d
     ser = serial.Serial('COM7', 115200)
@@ -49,7 +84,7 @@ def receiveData():
         kx.append(float(kx_val))
         ky.append(float(ky_val))
         d.append(float(d_val))
-        t.append(time.time()-startTime)
+        t.append(datetime.now().strftime(r'%H:%M:%S.%f'))
         
 def receiveDataFAKE():
     global t; global kx; global ky; global d
@@ -57,7 +92,7 @@ def receiveDataFAKE():
     kx.append(float(random.randint(42,48)))
     ky.append(float(random.randint(42,48)))
     d.append(float(random.randint(42,48)))
-    t.append(time.time()-startTime)
+    t.append(datetime.now().strftime(r'%H:%M:%S.%f'))
 
 def getLastData():
     data = {
