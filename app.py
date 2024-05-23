@@ -7,17 +7,17 @@ from time import time
 import services.dataService as dataService
 import services.videoService as videoService
 
-
+"""
 from importlib import import_module
 import os
-from picamera2 import picamera2
+#from picamera2 import picamera2
 
 # import camera driver
 if os.environ.get('CAMERA'):
-    Camera = import_module('camera_' + os.environ['CAMERA']).Camera
+   Camera = import_module('camera_' + os.environ['CAMERA']).Camera
 else:
     from camera import Camera
-
+"""
 
 class Config:
    FLASK_DEBUG = True
@@ -68,9 +68,8 @@ def log():
    print(f'{message}\n')
    return jsonify(result = message)
 
-
+""" 
 def gen(camera):
-    """Video streaming generator function."""
     yield b'--frame\r\n'
     while True:
         frame = camera.get_frame()
@@ -79,8 +78,13 @@ def gen(camera):
 
 @app.route('/video_feed')
 def video_feed():
-    """Video streaming route. Put this in the src attribute of an img tag."""
     return Response(gen(Camera()),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+"""
+
+@app.route('/video_feed')
+def video_feed():
+    return Response(videoService.generate_frames(),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
@@ -101,7 +105,7 @@ def data_receive_fake():
    dataService.receiveDataFAKE()
 
 
-@scheduler.task('interval', id='data_save', seconds=2)
+@scheduler.task('interval', id='data_save', seconds=60)
 def data_save():
    dataService.saveDataFile()
    print("[Data Saved Succesfully!]")

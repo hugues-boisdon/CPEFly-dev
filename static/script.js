@@ -44,15 +44,15 @@ document.body.addEventListener("keydown", (event) => {
 document.body.addEventListener("keyup", (event) => {
     keyWerePressed = true;
     console.log(event.key)
-    if (event.key == 'ArrowUp')   {commandValues.height_dy = 0}
-    if (event.key == 'ArrowDown') {commandValues.height_dy = 0}
-    if (event.key == 'ArrowRight'){commandValues.height_dx = 0}
-    if (event.key == 'ArrowLeft') {commandValues.height_dx = 0}
+    if (event.key == 'ArrowUp')   {commandValues.translation_dy = 0}
+    if (event.key == 'ArrowDown') {commandValues.translation_dy = 0}
+    if (event.key == 'ArrowRight'){commandValues.translation_dx = 0}
+    if (event.key == 'ArrowLeft') {commandValues.translation_dx = 0}
 });
 
 
 
-function updateCommandDisplay(command)
+function updateCommandDisplay()
 {
     var textTX = String(parseFloat(commandValues.translation_dx).toFixed(4));
     var textTY = String(parseFloat(commandValues.translation_dy).toFixed(4));
@@ -70,13 +70,14 @@ function updateMoveCommand()
     var commandIsNull = (commandValues.translation_dx == 0) && (commandValues.translation_dy == 0) && (commandValues.height_dx == 0) && (commandValues.height_dy == 0);
     if ((!keyWerePressed && commandIsNull) && !stopSendingCommand)
     {
+        
         stopSendingCommand = true;
         sendCommand(command =
             {height_dx: 0,
             height_dy: 0,
             translation_dx: 0,
             translation_dy: 0})
-        updateCommandDisplay(command = commandValues)
+        updateCommandDisplay()
     }
     else if (keyWerePressed || !commandIsNull)
     {
@@ -87,7 +88,7 @@ function updateMoveCommand()
     if (!stopSendingCommand)
     {
         sendCommand(command = commandValues)
-        updateCommandDisplay(command = commandValues)
+        updateCommandDisplay()
     }
 
     keyWerePressed = false;
