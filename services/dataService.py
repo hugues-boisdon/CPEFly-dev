@@ -1,5 +1,6 @@
 import serial, json, os, random, time
 from datetime import datetime
+import logging
 
 
 filePath = ""
@@ -57,33 +58,49 @@ def saveDataFile():
             else : f.writelines(','+formatted_str[1:])
             t = [t[-1]];kx = [kx[-1]];ky = [ky[-1]];d = [d[-1]]
 
-
+logged = False
+connected = False
     
-t = []
-kx = []
-ky = []
-d = []
+t =  [None]
+kx = [None]
+ky = [None]
+d =  [None]
 
 def receiveData():
-    global t; global kx; global ky; global d
-    ser = serial.Serial('COM7', 115200)
+    global t; global kx; global ky; global d; global logged; global connected
+    try :
+        port = 2
+        ser = serial.Serial(f'COM{port}', 115200)
+        
 
-    # data sous la forme (kx ; ky ; d)
-    data = ser.readline().decode().strip()
-    print("Données reçues: ", data)
-    
-    # Nettoyage des données
-    cleaned_data = ''.join(char if char.isdigit() or char in ['-', '.', ';'] else ' ' for char in data)
-    values = cleaned_data.strip().split(';')
+        # data sous la forme (kx ; ky ; d)
+        data = ser.readline().decode().strip()
+        if (not connected) or (not logged):
+            logging("SERIAL_CONNECTED_ON_PORT_{port}")
+            logged=True
+            connected=True
+        
+        # Nettoyage des données
+        cleaned_data = ''.join(char if char.isdigit() or char in ['-', '.', ';'] else ' ' for char in data)
+        values = cleaned_data.strip().split(';')
 
-    # Assurez-vous que la chaîne de données contient tous les éléments attendus
-    if len(values) == 3:
-        kx_val, ky_val, d_val = values[0], values[1].replace('-', ''), values[2]
+        # Assurez-vous que la chaîne de données contient tous les éléments attendus
+        if len(values) == 3:
+            kx_val, ky_val, d_val = values[0], values[1].replace('-', ''), values[2]
 
-        # Enregistrer les données
-        kx.append(float(kx_val))
-        ky.append(float(ky_val))
-        d.append(float(d_val))
+            # Enregistrer les données
+            kx.append(float(kx_val))
+            ky.append(float(ky_val))
+            d.append(float(d_val))
+            t.append(datetime.now().strftime(r'%H:%M:%S.%f'))
+    except:
+        if (not logged) or (connected and logged):
+            logging.warning("SERIAL_NOT_CONNECTED")
+            logged = True
+            connected = False
+        kx.append(None)
+        ky.append(None)
+        d.append(None)
         t.append(datetime.now().strftime(r'%H:%M:%S.%f'))
         
 def receiveDataFAKE():

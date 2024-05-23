@@ -2,6 +2,7 @@ import json
 from flask import Flask, render_template, request, url_for, jsonify, Response, redirect 
 from flask_apscheduler import APScheduler
 from time import time
+import logging
 
 
 import services.dataService as dataService
@@ -58,14 +59,14 @@ def dataPage():
 @app.route('/command', methods=['POST']) 
 def receiveMoveCommand(): 
    command = request.get_json() 
-   print(f'{command}\n')
+   logging.info(f'COMMAND_RECEIVED:{command}\n')
    return jsonify(result = command)
  
  
 @app.route('/log', methods=['POST']) 
 def log(): 
    message = request.get_json() 
-   print(f'{message}\n')
+   logging.info(f'MESSAGE_RECEIVED:{message}\n')
    return jsonify(result = message)
 
 """ 
@@ -80,13 +81,13 @@ def gen(camera):
 def video_feed():
     return Response(gen(Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
-"""
+
 
 @app.route('/video_feed')
 def video_feed():
-    return Response(videoService.generate_frames(),
+   return Response(videoService.generate_frames(),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
-
+"""
 
 @app.route('/get_data')
 def get_data():
@@ -94,7 +95,7 @@ def get_data():
 
 # Scheduled tasks
       
-"""
+
 @scheduler.task('interval', id='data_receive', seconds=1)
 def data_receive():
    dataService.receiveData()
@@ -103,12 +104,12 @@ def data_receive():
 @scheduler.task('interval', id='data_receive_fake', seconds=0.1)
 def data_receive_fake():
    dataService.receiveDataFAKE()
+"""
 
-
-@scheduler.task('interval', id='data_save', seconds=60)
+@scheduler.task('interval', id='data_save', seconds=20)
 def data_save():
    dataService.saveDataFile()
-   print("[Data Saved Succesfully!]")
+   logging.info(f'DATA_SAVED')
 
 
 

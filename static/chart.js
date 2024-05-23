@@ -1,5 +1,7 @@
-const ctxKx = document.getElementById('canvasKx').getContext('2d');;
-const ctxKy = document.getElementById('canvasKy').getContext('2d');;
+const ctxKx = document.getElementById('canvasKx').getContext('2d');
+const ctxKy = document.getElementById('canvasKy').getContext('2d');
+const ctxD  = document.getElementById('canvasD').getContext('2d');
+const connection  = document.getElementById("connection-text")
 
 // Création des graphiques Chart.js avec des données initiales vides
 
@@ -32,6 +34,22 @@ Ky = {
         pointBackgroundColor: 'rgba(0, 0, 0, 0)',
     }]
 }
+
+D = {
+    labels: [],
+    datasets: [{
+        label: 'D',
+        data: [],
+        borderColor: '#9027f5',
+        borderWidth: 2,
+        fill: true,
+        backgroundColor: 'rgba(144, 39, 245, 0.1)',
+        tension: 0.35,
+        pointBorderColor: 'rgba(0, 0, 0, 0)',
+        pointBackgroundColor: 'rgba(0, 0, 0, 0)',
+    }]
+}
+
 options = {
     responsive: true,
     animation: false,
@@ -82,6 +100,15 @@ const chartKy = new Chart(
     }
 );
 
+const chartD  = new Chart(
+    ctxD, 
+    {
+        type: 'line',
+        data: D,
+        options: options
+    }
+);
+
 
 // Fonction pour mettre à jour les graphiques avec de nouvelles données
 function updateCharts() {
@@ -91,6 +118,20 @@ function updateCharts() {
             t_last = jsonData.t;
             kx_last = jsonData.kx;
             ky_last = jsonData.ky;
+            d_last  = jsonData.d
+
+            if(kx_last == null || ky_last == null || d_last == null)
+            {
+                console.log("NOTTTTTTTTTt")
+                connection.innerText = " Not Connected "
+                connection.style.backgroundColor = "red"
+            }
+            else
+            {
+                connection.innerText = "Connected"
+                connection.style.backgroundColor = "green"
+            }
+
             if(!(chartKx.data.labels.includes(t_last)))
             {
                 chartKx.data.labels.push(t_last);
@@ -101,12 +142,18 @@ function updateCharts() {
                 chartKy.data.labels.push(t_last);
                 chartKy.data.datasets[0].data.push(ky_last);
             }
+            if(!(chartD.data.labels.includes(t_last)))
+            {
+                chartD.data.labels.push(t_last);
+                chartD.data.datasets[0].data.push(d_last);
+            }
         })
         .catch(error => {
             console.error('Erreur lors de la récupération des données série :', error);
         });
     chartKx.update('active');
     chartKy.update('active');
+    chartD.update( 'active');
 }
 
 

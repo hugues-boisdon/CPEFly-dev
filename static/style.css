@@ -146,7 +146,18 @@
 canvas
 {
     max-width: 90vw;
-    min-height: 30vh;
-    max-height: 30vh;
+    min-height: 24vh;
+    max-height: 24vh;
     margin-bottom: 5vh;
+}
+
+#connection-text
+{
+    padding: 12px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+
+    border-radius: 6px;
+
+    color: white;
 }
