@@ -103,7 +103,7 @@ function updateCharts() {
             }
         })
         .catch(error => {
-            console.error('Erreur lors de la lecture du fichier JSON :', error);
+            console.error('Erreur lors de la récupération des données série :', error);
         });
     chartKx.update('active');
     chartKy.update('active');

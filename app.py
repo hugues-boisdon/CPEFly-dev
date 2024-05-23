@@ -8,6 +8,17 @@ import services.dataService as dataService
 import services.videoService as videoService
 
 
+from importlib import import_module
+import os
+from picamera2 import picamera2
+
+# import camera driver
+if os.environ.get('CAMERA'):
+    Camera = import_module('camera_' + os.environ['CAMERA']).Camera
+else:
+    from camera import Camera
+
+
 class Config:
    FLASK_DEBUG = True
    
@@ -58,9 +69,19 @@ def log():
    return jsonify(result = message)
 
 
+def gen(camera):
+    """Video streaming generator function."""
+    yield b'--frame\r\n'
+    while True:
+        frame = camera.get_frame()
+        yield b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n--frame\r\n'
+
+
 @app.route('/video_feed')
 def video_feed():
-   return Response(videoService.gen_frames(), mimetype='video/h264')
+    """Video streaming route. Put this in the src attribute of an img tag."""
+    return Response(gen(Camera()),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 @app.route('/get_data')
