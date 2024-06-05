@@ -70,8 +70,8 @@ def receiveData():
     global t; global kx; global ky; global d; global logged; global connected
     try :
         port = 2
-        ser = serial.Serial(f'COM{port}', 115200)
-        
+        ser = serial.Serial('COM7', 115200)
+        logging("trying")
 
         # data sous la forme (kx ; ky ; d)
         data = ser.readline().decode().strip()
